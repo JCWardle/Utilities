@@ -2,12 +2,28 @@
 
 #pragma once
 
-using namespace System;
-
 namespace Utilities {
-
-	public ref class LinkedList
+	
+	template<class T>
+	class LinkedList
 	{
-		// TODO: Add your methods for this class here.
+		public:
+			LinkedList(){}
+
+			void Add(T data)
+			{
+
+			}
+
+			void Remove(int index)
+			{
+
+			}
+
+			T * operator[](int)
+			{
+				int * a = new int (1);
+				return a;
+			}
 	};
 }

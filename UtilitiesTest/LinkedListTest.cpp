@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
+#include "LinkedList.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -9,9 +10,13 @@ namespace UtilitiesTest
 	{
 	public:
 		
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(Add_One_Item)
 		{
-			// TODO: Your test code here
+			Utilities::LinkedList<int> list = Utilities::LinkedList<int>();
+
+			list.Add(1);
+
+			Assert::AreEqual(1, *list[0]);
 		}
 
 	};
