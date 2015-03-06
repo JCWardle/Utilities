@@ -8,12 +8,21 @@ namespace Utilities {
 	class LinkedList
 	{
 		private:
-			int mLength;
+			class Node
+			{
+				public:
+					Node* next;
+					T* data;
+			};
+
+			Node* mStart;
+
+			class Node* nil;
 
 		public:
 			LinkedList()
 			{
-				mLength = 0;
+				mStart = nil;
 			}
 
 			/**
@@ -21,9 +30,25 @@ namespace Utilities {
 
 			@param Data the data to add to the list
 			*/
-			void add(T data)
+			void add(T* data)
 			{
+				Node* newNode = new Node();
+				newNode->data = data;
+				newNode->next = nil;
+				
+				Node* currentNode = mStart;
+				Node* previousNode = nil;
+				
+				while (currentNode != nil)
+				{
+					previousNode = currentNode;
+					currentNode = currentNode->next;					
+				}
 
+				if (previousNode == nil)
+					mStart = newNode;
+				else
+					previousNode->next = newNode;
 			}
 
 			/**
@@ -34,7 +59,28 @@ namespace Utilities {
 			*/
 			void remove(int index)
 			{
+				if (index < 0)
+					throw std::invalid_argument("Index out of range");
 
+				Node* currentNode = mStart;
+				Node* previousNode = nil;
+				int i = 0;
+
+				while (currentNode != nil && i != index)
+				{
+					previousNode = currentNode;
+					currentNode = currentNode->next;
+					i++;
+				}
+
+				if (currentNode == nil)
+					throw std::invalid_argument("Index out of range");
+
+				if (previousNode == nil)
+					mStart = nil;
+				else
+					previousNode->next = currentNode->next;
+				delete currentNode;
 			}
 
 			/**
@@ -45,10 +91,26 @@ namespace Utilities {
 			@param int the index
 			@return the element at the indexed location
 			*/
-			T * operator[](int)
+			T * operator[](int index)
 			{
-				int * a = new int (1);
-				return a;
+				Node* node;
+
+				if (index < 0)
+					throw std::invalid_argument("Index out of range");
+
+				node = mStart;
+				int i = 0;
+
+				while (node != nil && i != index)
+				{
+					node = node->next;
+					i++;
+				}
+
+				if (node == nil)
+					throw std::invalid_argument("Index out of range");
+
+				return node->data;
 			}
 
 			/**
@@ -56,7 +118,16 @@ namespace Utilities {
 			*/
 			int length()
 			{
-				return mLength;
+				Node* node = mStart;
+				int i = 0;
+
+				while (node != nil)
+				{
+					i++;
+					node = node->next;
+				}
+
+				return i;
 			}
 	};
 }

@@ -13,8 +13,9 @@ namespace UtilitiesTest
 		TEST_METHOD(Add_One_Item)
 		{
 			Utilities::LinkedList<int> list = Utilities::LinkedList<int>();
+			int* a = new int(1);
 
-			list.add(1);
+			list.add(a);
 
 			Assert::AreEqual(1, *list[0]);
 		}
@@ -22,9 +23,11 @@ namespace UtilitiesTest
 		TEST_METHOD(Add_Two_Items)
 		{
 			Utilities::LinkedList<int> list = Utilities::LinkedList<int>();
+			int* a = new int(1);
+			int* b = new int(2);
 
-			list.add(1);
-			list.add(2);
+			list.add(a);
+			list.add(b);
 
 			Assert::AreEqual(1, *list[0]);
 			Assert::AreEqual(2, *list[1]);
@@ -33,8 +36,9 @@ namespace UtilitiesTest
 		TEST_METHOD(Remove_Item)
 		{
 			Utilities::LinkedList<int> list = Utilities::LinkedList<int>();
+			int* a = new int(1);
 
-			list.add(1);
+			list.add(a);
 			list.remove(0);
 			
 			Assert::AreEqual(0, list.length());
@@ -44,9 +48,10 @@ namespace UtilitiesTest
 		{
 			Utilities::LinkedList<int> list = Utilities::LinkedList<int>();
 
-			list.add(1);
-			list.add(2);
-			list.add(3);
+
+			list.add(new int(1));
+			list.add(new int(2));
+			list.add(new int(3));
 			list.remove(1);
 
 			Assert::AreEqual(2, list.length());
@@ -58,7 +63,7 @@ namespace UtilitiesTest
 		{
 			Utilities::LinkedList<int> list = Utilities::LinkedList<int>();
 
-			list.add(1);
+			list.add(new int(1));
 
 			Assert::AreEqual(1, list.length());
 		}
@@ -67,11 +72,11 @@ namespace UtilitiesTest
 		{
 			Utilities::LinkedList<int> list = Utilities::LinkedList<int>();
 
-			list.add(1);
-			list.add(2);
-			list.add(3);
-			list.add(4);
-			list.add(5);
+			list.add(new int(1));
+			list.add(new int(2));
+			list.add(new int(3));
+			list.add(new int(4));
+			list.add(new int(5));
 
 			Assert::AreEqual(5, list.length());
 		}
@@ -82,7 +87,7 @@ namespace UtilitiesTest
 
 			for (int i = 0; i < 5000; i++)
 			{
-				list.add(i);
+				list.add(new int(i));
 			}
 
 			Assert::AreEqual(5000, list.length());
